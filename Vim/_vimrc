@@ -1,0 +1,95 @@
+set nocompatible
+filetype plugin on
+" Enables automatic indentation as I type
+filetype indent on
+inoremap jk <ESC>
+
+" set working directory
+cd /Users/Isaak/Documents/School/
+
+" Autosave on focus change
+:au FocusLost * :wa
+" Set <leader> to space
+let mapleader = (' ')
+let maplocalleader = (' ') 
+
+" Quick copy paste from clipboard
+nnoremap <leader>p "*p
+nnoremap <leader>y "*y
+vnoremap <leader>y "*y
+
+" Find next char under cursor
+nnoremap <silent> <leader>a vy/<C-R>='\V'.escape(getreg('"'),'\\/')<CR><CR>
+
+" Disable bell sound
+set visualbell
+
+" Set font
+set guifont=Consolas:h11:cANSI
+
+" Hopefully this is unnecessary with vim-pencil 
+" Writing format stuff
+" set wrap
+" set fo+=aw2tq
+set spell
+
+" Go back to last misspelled word and pick first suggestion.
+inoremap <C-L> <C-G>u<Esc>[s1z=`]a<C-G>u
+
+" store backup, undo, and swap files in temp directory
+set directory=$HOME/temp//
+set backupdir=$HOME/temp//
+set undodir=$HOME/temp//
+
+" No distractions 
+set guioptions -=m 
+set guioptions -=T
+
+"Remove all trailing whitespace by pressing <space>w
+nnoremap <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" Open .vimrc in new buffer 
+nnoremap <leader>cv :tabe $MYGVIMRC<CR>
+
+" Reload .vimrc in new buffer 
+nnoremap <leader>s :w<CR> :source%<CR>
+
+" Turn hard wrapped text into soft wrapped.  This command will join all lines
+" within a range that are not separated by empty lines. Automatic word wrap
+" must be off (set fo-=a).  Useful if you need to copy and paste into a word
+" processor.
+command! -range=% SoftWrap
+            \ <line2>put _ |
+            \ <line1>,<line2>g/.\+/ .;-/^$/ join |normal $x
+
+" Plugins
+call plug#begin('~/vimfiles/plugin')
+
+" Goyo-- distraction free writing
+Plug 'junegunn/goyo.vim'
+" Highlight paragraph cursor is chillin on 
+Plug 'junegunn/limelight.vim'
+" Do some formatting stuff for writing
+Plug 'reedes/vim-pencil'
+" Add Rich text to Vim: Highlighting, bold, italics, underlines !! 
+" Plug 'bpstahlman/txtfmt' 
+" Vim runtime files for Swift
+" Plug 'keith/swift.vim'
+
+call plug#end()
+
+" Goyo Config
+" Quick start with 120 width
+nnoremap <Leader>go :Goyo80x85%<CR>
+nnoremap <Leader>gf :Goyo!<CR>
+
+" Limelight Config
+" Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+
+" Set syntax highlighting for tex files
+autocmd BufNewFile,BufRead *.tex   set syntax=tex
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+let g:Tex_ViewRule_pdf='SumatraPDF'
