@@ -1,0 +1,71 @@
+# Misc
+alias cz='vim ~/.zshrc'
+alias o='open .'
+alias s='vim ~/.scratch'
+alias c=clear 
+alias src='source ~/.zshrc'
+alias fuck='sudo !!'
+alias ox='open ./*.xcworkspace'
+
+# Current projects
+alias pfb='cd ~/Documents/PerfectBudgetApp-V2/PerfectBudgetApp-V2; cd ..'
+alias whp='cd ~/Documents/iOS/;'
+alias cyy='cd ~/Documents/cy2550/;'
+alias vow='cd ~/Documents/vow/;'
+
+# Git
+alias gst='git status' 
+alias gaa='git add .' 
+alias gcm='git commit -m' 
+alias gcam='git add .; git commit -m' 
+alias gd='git diff' 
+alias gdd='git diff dev' 
+alias gdc='git diff --cached' 
+alias gp='git push' 
+alias gcd='git checkout dev'
+alias gcl='git checkout -' # 'git checkout last (branch)'
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gr="git fetch; git pull" # I call this one, 'git refresh'
+alias gac="git commit --amend --no-edit"
+alias gcb="git checkout -b"
+alias grbc="git rebase --continue"
+
+# Search command history with up 
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
+
+# Copy last command (copy last)
+alias cpl='fc -ln -1 | awk '{$1=$1}1' | pbcopy'
+
+# Syntax highlighting
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Load Git completion
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+fpath=(~/.zsh $fpath)
+
+autoload -Uz compinit && compinit
+fpath=(/usr/local/share/zsh-scripts/git-completion/ $fpath)
+
+autoload -Uz compinit && compinit
+
+#----AWS config-----#
+export AWS_ACCESS_KEY_ID="KEY_HERE"
+export AWS_SECRET_ACCESS_KEY="KEY_HERE"
+
+#----JAVA NEXUS-----#
+export NEXUS_RM_USERNAME=meier
+export NEXUS_RM_PASSWORD=54xzTV72h5hE
+
+#------GitHub/DockerDeployer------#
+export CLI_DEPLOYER_GITHUB_TOKEN=TOKEN_HERE
+
+#Setup Pyenv
+eval "$(pyenv init -)"
+PATH="$(pyenv root)/shims:${PATH}"
+export PATH
+export PATH="/usr/local/sbin:$PATH"
+
+# gpg doesn't fuck me everytime
+export GPG_TTY=$(tty)
+

@@ -1,0 +1,8 @@
+inoremap jk <ESC>
+set incsearch
+syntax on
+" set runtimepath+=~/.vim/bundle/swift.vim
+
+nnoremap <SPACE>y "*y
+vnoremap <SPACE>y "*y
+nnoremap <SPACE>p "*p

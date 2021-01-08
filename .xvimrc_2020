@@ -1,0 +1,7 @@
+inoremap jk <ESC>
+set incsearch
+
+map <Space>s viw:xccmd findSelectedTextInWorkspace<CR>
+
+map gt :xcmenucmd Show Next Tab<CR>
+map gT :xcmenucmd Show Previous Tab<CR>
